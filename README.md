@@ -1,4 +1,5 @@
 # 我的餐廳清單
+![image](https://github.com/Nilney/restaurant_list/blob/main/views/photo/main.png?raw=true)
 
 ## 專案介紹
 本網頁精選台北市八家特色餐廳，紀錄餐廳基本資料及訂位資訊，並提供使用者進行關鍵字查詢。

@@ -2,7 +2,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
-const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/restaurant')
 
 // 僅在非正式環境時，使用dotenv
@@ -44,16 +43,29 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant_id = req.params.restaurant_id
-  const restaurantClicked = restaurantList.results.find(restaurant => restaurant.id.toString() === restaurant_id)
-  res.render('show', { restaurant: restaurantClicked })
+  Restaurant.findById(restaurant_id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(err => console.error(err))
 })
 
 app.get('/search', (req, res) => {
+  if (!req.query.keyword) {
+    return res.redirect('/')
+  }
+
   const keyword = req.query.keyword
-  const restaurantMatched = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { keyword: keyword, restaurants: restaurantMatched })
+  const theKeyword = req.query.keyword.trim().toLowerCase()
+
+  Restaurant.find()
+    .lean()
+    .then(restaurantsData => {
+      const restaurants = restaurantsData.filter(restaurant =>
+        restaurant.name.toLowerCase().includes(theKeyword) || restaurant.category.toLowerCase().includes(theKeyword)
+      )
+      return res.render('index', { keyword, restaurants })
+    })
+    .catch(err => console.error(err))
 })
 
 

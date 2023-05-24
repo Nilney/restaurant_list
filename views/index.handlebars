@@ -23,7 +23,7 @@
       <div class="row row-cols-sm-3">
         <!-- use each for render the list  -->
         {{#each restaurants}}
-        <a href="/restaurants/{{this._id}}" class="text-secondary">
+        <div class="col">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
@@ -39,8 +39,12 @@
               </span>
 
             </div>
+            <div class="card-footer text-end">
+              <a href="/restaurants/{{this._id}}" style="text-decoration:none;">Detail</a>
+            </div>
           </div>
-        </a>
+        </div>
+
         {{/each}}
       </div>
     </div>

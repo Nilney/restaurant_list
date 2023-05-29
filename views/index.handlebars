@@ -12,6 +12,9 @@
           </div>
         </div>
       </form>
+      <div class="mt-3 d-flex justify-content-end">
+        <a href="./restaurants/new"><button class="btn btn-major" type="submit">新增餐廳</button></a>
+      </div>
     </div>
   </div>
 </div>
@@ -39,8 +42,9 @@
               </span>
 
             </div>
-            <div class="card-footer text-end">
-              <a href="/restaurants/{{this._id}}" style="text-decoration:none;">Detail</a>
+            <div class="card-footer d-flex justify-content-end">
+              <a class="me-2" href="/restaurants/{{this._id}}/edit" style="text-decoration:none;">Edit</a>
+              <a class="me-2" href="/restaurants/{{this._id}}" style="text-decoration:none;">Detail</a>
             </div>
           </div>
         </div>

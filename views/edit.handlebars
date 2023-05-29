@@ -1,0 +1,72 @@
+<h1 class="mb-1 restaurant-show-title">編輯餐廳資訊</h1>
+<div class="container mb-3">
+  <form action="/restaurants/{{restaurant._id}}" method="POST" class="col-md-10 col-12 mx-auto">
+    <div class="mb-3">
+      <label for="name" class="form-label">店名</label>
+      <input type="text" class="form-control" placeholder="請輸入餐廳名稱..." name="name" id="name" value="{{restaurant.name}}"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="name_en" class="form-label">英文名</label>
+      <input type="text" class="form-control" placeholder="請輸入餐廳英文名..." name="name_en" id="name_en"
+        value="{{restaurant.name_en}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">類別</label>
+      <input type="text" list="categoryOptions" class="form-control" placeholder="請選取或輸入" name="category" id="category"
+        value="{{restaurant.category}}" required>
+      <datalist id="categoryOptions">
+        <option value="中東料理">
+        <option value="義式餐廳">
+        <option value="日本料理">
+        <option value="美式餐廳">
+        <option value="酒吧">
+        <option value="咖啡">
+      </datalist>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">圖片</label>
+      <input type="url" class="form-control" placeholder="請提供圖片連結" name="image" id="image" value="{{restaurant.image}}"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">地址</label>
+      <input type="text" class="form-control" placeholder="請輸入地址..." name="location" id="location"
+        value="{{restaurant.location}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">電話</label>
+      <input type="tel" class="form-control" placeholder="請輸入電話" name="phone" id="phone" value="{{restaurant.phone}}"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="google_map" class="form-label">Google map</label>
+      <input type="url" class="form-control" placeholder="請提供連結" name="google_map" id="google_map"
+        value="{{restaurant.google_map}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">評分</label>
+      <input type="number" min="1" max="5" step="0.1" class="form-control" placeholder="1至5分，每一級距0.1" name="rating"
+        id="rating" value="{{restaurant.rating}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">簡介</label>
+      <textarea class="form-control" placeholder="" name="description" id="description"
+        required>{{restaurant.description}}</textarea>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary m-2">更新資訊</button>
+      <a href="/"><button type="button" class="btn btn-outline-dark m-2">返回首頁</button></a>
+    </div>
+
+  </form>
+</div>

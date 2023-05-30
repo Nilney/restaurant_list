@@ -1,5 +1,5 @@
 # 我的餐廳清單
-![image](https://github.com/Nilney/restaurant_list/blob/main/views/photo/main.png?raw=true)
+![Index page for restaurant_list](./views/photo/main-230530.png)
 
 ## 專案介紹
 本網頁提供餐廳基本資料及訂位資訊，並可進行關鍵字查詢，亦可由使用者自行新增、編輯及刪除。

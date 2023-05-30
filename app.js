@@ -103,6 +103,14 @@ app.post('/restaurants/:restaurant_id', (req, res) => {
     .catch(err => console.error(err))
 })
 
+// 刪除餐廳
+app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+  const restaurant_id = req.params.restaurant_id
+  Restaurant.findByIdAndDelete(restaurant_id)
+    .then(() => res.redirect('/'))
+    .catch(err => console.error(err))
+})
+
 // start and listen on the Express server
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)

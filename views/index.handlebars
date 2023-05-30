@@ -42,9 +42,12 @@
               </span>
 
             </div>
-            <div class="card-footer d-flex justify-content-end">
+            <div class="card-footer d-grid d-md-flex justify-content-md-end align-items-center">
               <a class="me-2" href="/restaurants/{{this._id}}/edit" style="text-decoration:none;">Edit</a>
               <a class="me-2" href="/restaurants/{{this._id}}" style="text-decoration:none;">Detail</a>
+              <form action="/restaurants/{{this._id}}/delete" method="POST">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
             </div>
           </div>
         </div>

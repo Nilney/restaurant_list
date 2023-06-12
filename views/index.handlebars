@@ -11,10 +11,23 @@
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
+        <div class="row justify-content-between">
+          <div class="col mt-3">
+            <select class="form-select form-select" id="sortOnlyOne" name="sort">
+              <option value="0" {{#if_eq sort "0"}}selected{{/if_eq}}>排序方式 (預設)</option>
+              <option value="1" {{#if_eq sort "1"}}selected{{/if_eq}}>A -> Z</option>
+              <option value="2" {{#if_eq sort "2"}}selected{{/if_eq}}>Z -> A</option>
+              <option value="3" {{#if_eq sort "3"}}selected{{/if_eq}}>地區</option>
+              <option value="4" {{#if_eq sort "4"}}selected{{/if_eq}}>類別</option>
+              <option value="5" {{#if_eq sort "5"}}selected{{/if_eq}}>評分高 -> 低</option>
+              <option value="6" {{#if_eq sort "6"}}selected{{/if_eq}}>評分低 -> 高</option>
+            </select>
+          </div>
+          <div class="col mt-3 d-flex justify-content-end">
+            <a href="./restaurants/new"><button class="btn btn-major" type="submit">新增餐廳</button></a>
+          </div>
+        </div>
       </form>
-      <div class="mt-3 d-flex justify-content-end">
-        <a href="./restaurants/new"><button class="btn btn-major" type="submit">新增餐廳</button></a>
-      </div>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 # 我的餐廳清單
-![Index page for restaurant_list](./views/photo/main-230530.png)
+![Index page for restaurant_list](./views/photo/main-230613.png)
 
 ## 專案介紹
 本網頁提供餐廳基本資料及訂位資訊，並可進行關鍵字查詢，亦可由使用者自行新增、編輯及刪除。
@@ -11,6 +11,7 @@
 * 可編輯餐廳資訊
 * 可刪除餐廳列表
 * 可以關鍵字查詢符合店名或餐廳類型之店家列表
+* 可供使用者於搜尋中自訂排序規則
 
 ## 開發工具
 * Node.js @14.16.0

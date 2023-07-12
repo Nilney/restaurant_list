@@ -1,9 +1,19 @@
 const express = require('express')
+const Handlebars = require('handlebars')
 const router = express.Router()
 
 const Restaurant = require('../../models/restaurant')
 
 const sortMethod = [{ _id: 'asc' }, { name: 'asc' }, { name: 'desc' }, { location: 'asc' }, { category: 'asc' }, { rating: 'desc' }, { rating: 'asc' }]
+
+// 協助於handlebars判別
+Handlebars.registerHelper('if_eq', function (sort, value, selected) {
+  if (sort === value) {
+    return selected.fn(this)
+  } else {
+    return selected.inverse(this)
+  }
+})
 
 // 首頁
 router.get('/', (req, res) => {

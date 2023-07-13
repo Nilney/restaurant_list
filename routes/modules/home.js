@@ -17,7 +17,8 @@ Handlebars.registerHelper('if_eq', function (sort, value, selected) {
 
 // 首頁
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
@@ -33,8 +34,9 @@ router.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const theKeyword = req.query.keyword.trim().toLowerCase()
   const sort = req.query.sort
+  const userId = req.user._id
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(sortMethod[sort])
     .then(restaurantsData => {

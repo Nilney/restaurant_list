@@ -5,9 +5,11 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 
+const usePassport = require('./config/passport')
+require('./config/mongoose')
+
 const app = express()
 const port = 3000
-require('./config/mongoose')
 
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -27,6 +29,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // methodOverride 處理每條需求
 app.use(methodOverride('_method'))
+
+// routes 前調用 usePassport
+usePassport(app)
 
 // routes
 app.use(routes)

@@ -3,8 +3,9 @@ const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
-const routes = require('./routes')
+const flash = require('connect-flash')
 
+const routes = require('./routes')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
@@ -34,9 +35,13 @@ app.use(methodOverride('_method'))
 usePassport(app)
 
 // 設定本地變數供 view 存取
+app.use(flash())
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.login_err = req.flash('login_err')
   next()
 })
 

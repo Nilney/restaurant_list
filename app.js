@@ -5,19 +5,24 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
 
+// 僅在非正式環境時，使用dotenv
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const routes = require('./routes')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT
 
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized:true
 }))
@@ -49,6 +54,6 @@ app.use((req, res, next) => {
 app.use(routes)
 
 // start and listen on the Express server
-app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })

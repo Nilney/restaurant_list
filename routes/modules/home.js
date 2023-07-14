@@ -27,10 +27,6 @@ router.get('/', (req, res) => {
 
 // 搜尋餐廳
 router.get('/search', (req, res) => {
-  if (!req.query.keyword) {
-    return res.redirect('/')
-  }
-
   const keyword = req.query.keyword
   const theKeyword = req.query.keyword.trim().toLowerCase()
   const sort = req.query.sort

@@ -62,3 +62,12 @@
     
   </form>
 </div>
+
+<script>
+  // 驗證 new page 表單內容
+    const createSubmit = document.querySelector('#createSubmit')
+    const createForm = document.querySelector('#createForm')
+    createSubmit.addEventListener('click', function onCreateSubmitClicked(event) {
+      createForm.classList.add('was-validated')
+    })
+</script>

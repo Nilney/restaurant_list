@@ -40,9 +40,32 @@
     <div class="d-flex justify-content-center">
       <a href="/restaurants/{{restaurant._id}}/edit"><button class="btn btn-primary m-2">編輯餐廳</button></a>
       <a href="/"><button type="submit" class="btn btn-outline-dark m-2">返回首頁</button></a>
-      <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-danger m-2">刪除餐廳</button>
+      <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="POST" id="deleteForm-{{restaurant._id}}">
+        <button type="submit" class="btn btn-danger m-2 deleteButton" data-id="{{restaurant._id}}">刪除餐廳</button>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+  // 刪除資料確認框
+  const deleteButton = document.querySelector('.deleteButton')
+  deleteButton.addEventListener('click', event => {
+    event.preventDefault()
+    swal({
+      title: "確定是否刪除餐廳？",
+      text: "餐廳一經刪除無法復原",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then(willDelete => {
+        if (willDelete) {
+          const id = event.target.dataset.id
+          const deleteForm = document.querySelector(`#deleteForm-${id}`)
+          console.log(deleteForm)
+          deleteForm.submit()
+        }
+      });
+  })
+</script>

@@ -58,8 +58,8 @@
             <div class="card-footer d-grid d-md-flex justify-content-md-end align-items-center">
               <a class="me-2" href="/restaurants/{{this._id}}/edit" style="text-decoration:none;">Edit</a>
               <a class="me-2" href="/restaurants/{{this._id}}" style="text-decoration:none;">Detail</a>
-              <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" id="deleteForm-{{this._id}}">
+                <button type="submit" class="btn btn-danger btn-sm deleteButton" data-id="{{this._id}}">Delete</button>
               </form>
             </div>
           </div>
@@ -70,3 +70,27 @@
     </div>
   </div>
 </div>
+
+<script>
+  // 刪除資料確認框
+  const deleteButtons = document.querySelectorAll('.deleteButton')
+  deleteButtons.forEach(deleteButton => {
+    deleteButton.addEventListener('click', event => {
+      event.preventDefault()
+      swal({
+        title: "確定是否刪除餐廳？",
+        text: "餐廳一經刪除無法復原",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then(willDelete => {
+          if (willDelete) {
+            const id = event.target.dataset.id
+            const deleteForm = document.querySelector(`#deleteForm-${id}`)
+            deleteForm.submit()
+          }
+        });
+    })
+  })
+</script>

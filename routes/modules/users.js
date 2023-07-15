@@ -9,10 +9,19 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+router.post('/login', (req, res) => {
+  const { email, passowrd } = req.body
+  if (!email || !passowrd) {
+    req.flash('login_err', '請輸入 Email 與 Password')
+    return res.redirect('/users/login')
+  }
+  next()
+},
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+  })
+)
 
 router.get('/register', (req, res) => {
   res.render('register')
